@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Hi, User!</h1>
+
+    {% set exercisesLengt = [exercises['today']|length, exercises['one_week_ago']|length, exercises['two_weeks_ago']|length] %}
+    {{ dump() }}
+
+    <table border="1" cellspacing="0" cellpadding="2">
+        <thead>
+        <tr>
+            <th>2 weeks ago</th>
+            <th>week ago</th>
+            <th>today</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for exercise in 0..max(exercisesLengt)-1 %}
+            <tr>
+                <td>
+                    {% if exercises['two_weeks_ago'][exercise] is defined %}
+                        {{ exercises['two_weeks_ago'][exercise].description }}
+                        {{ exercises['two_weeks_ago'][exercise].weight }} X
+                        {{ exercises['two_weeks_ago'][exercise].weight }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if exercises['one_week_ago'][exercise] is defined %}
+                        {{ exercises['one_week_ago'][exercise].description }}
+                        {{ exercises['one_week_ago'][exercise].weight }} X
+                        {{ exercises['one_week_ago'][exercise].weight }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if exercises['today'][exercise] is defined %}
+                        {{ exercises['today'][exercise].description }}
+                        {{ exercises['today'][exercise].weight }} X
+                        {{ exercises['today'][exercise].weight }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
+{% endblock %}

@@ -1,11 +1,9 @@
 <?php
 
+// src/AppBundle/Entity/Exercise.php
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
-// There is only one entity - Exercise. Fields are: short description of done exercise, weight,
-// count of times exercise was done, date, time (here it’s better to store date without time, it’ll simplify logic later).
 
 /**
  * @ORM\Entity
@@ -36,9 +34,17 @@ class Exercise
     private $exerciseCount;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date")
      */
     private $date;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="exercises")
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -144,5 +150,29 @@ class Exercise
     public function getDate()
     {
         return $this->date;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     *
+     * @return Exercise
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
