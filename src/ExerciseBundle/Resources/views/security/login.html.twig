@@ -1,0 +1,27 @@
+{# app/Resources/views/security/login.html.twig #}
+{# ... you will probably extends your base template, like base.html.twig #}
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+<div>
+    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'ru'})) }}">ru</a>
+    <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">en</a>
+</div>
+<form action="{{ path('login') }}" method="post">
+    <label for="username">{{ 'username'|trans }}:</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+
+    <label for="password">{{ 'password'|trans }}:</label>
+    <input type="password" id="password" name="_password" />
+
+
+    {#<input type="hidden" name="_target_path" value="{{ path('exercises') }}">#}
+    {#
+        If you want to control the URL the user
+        is redirected to on success (more details below)
+        <input type="hidden" name="_target_path" value="/account" />
+    #}
+
+    <button type="submit">login</button>
+</form>

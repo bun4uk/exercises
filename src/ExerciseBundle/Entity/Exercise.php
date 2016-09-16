@@ -1,11 +1,14 @@
 <?php
 
-// src/AppBundle/Entity/Exercise.php
-namespace AppBundle\Entity;
+// src/ExerciseBundle/Entity/Exercise.php
+namespace ExerciseBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ExerciseBundle\Entity\User;
 
 /**
+ * Exercise entity
+ *
  * @ORM\Entity
  * @ORM\Table(name="exercise")
  */
@@ -44,7 +47,6 @@ class Exercise
      * @ORM\ManyToOne(targetEntity="User", inversedBy="exercises")
      */
     private $user;
-
 
     /**
      * Get id
@@ -155,11 +157,11 @@ class Exercise
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param User $user
      *
      * @return Exercise
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -169,7 +171,7 @@ class Exercise
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return User
      */
     public function getUser()
     {

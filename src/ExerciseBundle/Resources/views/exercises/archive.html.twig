@@ -1,17 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Hi, User!</h1>
 
+    <div>
+        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'ru'})) }}">ru</a>
+        <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">en</a>
+    </div>
+
+    <h1>{{ 'hello'|trans }}, {{ user.username }}!</h1>
+    <p>{{ 'check'|trans }}</p>
     {% set exercisesLengt = [exercises['today']|length, exercises['one_week_ago']|length, exercises['two_weeks_ago']|length] %}
     {{ dump() }}
 
     <table border="1" cellspacing="0" cellpadding="2">
         <thead>
         <tr>
-            <th>2 weeks ago</th>
-            <th>week ago</th>
-            <th>today</th>
+            <th>{{ 'two_week_ago'|trans }}</th>
+            <th>{{ 'week_ago'|trans }}</th>
+            <th>{{ 'today'|trans }}</th>
         </tr>
         </thead>
         <tbody>
@@ -42,6 +48,8 @@
         {% endfor %}
         </tbody>
     </table>
+    <br>
+    <a href="{{ path('logout') }}">{{ 'logout'|trans }}</a>
 
 
 

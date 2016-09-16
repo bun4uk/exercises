@@ -1,10 +1,10 @@
 # src/SportBundle/DataFixtures/ORM/exercise.yml
-AppBundle\Entity\User:
+ExerciseBundle\Entity\User:
     user{yevhen, dell, black}:
         username: <current()>
         password: <current()>
 
-AppBundle\Entity\Exercise:
+ExerciseBundle\Entity\Exercise:
     exercise_{1..50}:
         description: <randomElement(['Deadlift', 'Leg extension', 'Pectorals'])>
         weight: <numberBetween(20, 200)>

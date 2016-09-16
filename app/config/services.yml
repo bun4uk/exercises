@@ -5,10 +5,10 @@ parameters:
 
 services:
 #    service_name:
-#        class: AppBundle\Directory\ClassName
+#        class: ExerciseBundle\Directory\ClassName
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
 
   exercise_service:
-      class: AppBundle\Service\ExerciseService
+      class: ExerciseBundle\Service\ExerciseService
       arguments:
           - '@doctrine.orm.entity_manager'

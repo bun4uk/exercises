@@ -6,12 +6,18 @@
  * Time: 18:24
  */
 
-namespace AppBundle\Service;
+namespace ExerciseBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityRepository;
+use ExerciseBundle\Entity\User;
 
-
+/**
+ * Exercise Service
+ * Class ExerciseService
+ *
+ * @package ExerciseBundle\Service
+ */
 class ExerciseService
 {
     const CALENDAR_TODAY = 'today';
@@ -29,12 +35,22 @@ class ExerciseService
         $this->entityManager = $entityManager;
     }
 
-    public function getData()
+    /**
+     * @param User $user
+     * @return array
+     */
+    public function getData(User $user)
     {
-        $exercises = [];
+        $exercises = [
+            self::CALENDAR_TWO_WEEKS_AGO => [],
+            self::CALENDAR_ONE_WEEK_AGO => [],
+            self::CALENDAR_TODAY => []
+        ];
         $now = new \DateTimeImmutable('today');
 
-//        $exerciseRepository = $this->entityManager->getRepository('AppBundle:Exercise');
+//        $exerciseRepository = $this->entityManager->getRepository(
+//            'ExerciseBundle:Exercise'
+//        );
 //        $exercises = [
 //
 //            self::CALENDAR_TWO_WEEKS_AGO => $exerciseRepository->findBy(
@@ -55,13 +71,12 @@ class ExerciseService
 //
 //        ];
 
-
         $query = $this->entityManager->createQuery(
             '
-            SELECT e, u FROM AppBundle:Exercise e
+            SELECT e, u FROM ExerciseBundle:Exercise e
             JOIN e.user u
-            WHERE u.username = \'dell\'
-            '
+            WHERE u.id =
+            ' . $user->getId()
         );
         $results = $query->getResult();
 
