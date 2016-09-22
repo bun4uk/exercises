@@ -18,7 +18,7 @@ use ExerciseBundle\Entity\User;
  */
 class ExerciseRepository extends EntityRepository
 {
-a
+
     /**
      * @param User $user
      * @return array
