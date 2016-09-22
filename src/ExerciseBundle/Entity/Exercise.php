@@ -8,9 +8,10 @@ use ExerciseBundle\Entity\User;
 
 /**
  * Exercise entity
- *
- * @ORM\Entity
+ * @package ExerciseBundle\Entity
+ * @ORM\Entity(repositoryClass="ExerciseBundle\Repository\ExerciseRepository")
  * @ORM\Table(name="exercise")
+ * @ORM\HasLifecycleCallbacks
  */
 class Exercise
 {
