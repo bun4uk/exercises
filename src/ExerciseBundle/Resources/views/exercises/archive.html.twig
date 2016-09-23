@@ -10,7 +10,6 @@
     <h1>{{ 'hello'|trans }}, {{ user.username }}!</h1>
     <p>{{ 'check'|trans }}</p>
     {% set exercisesLengt = [exercises['today']|length, exercises['one_week_ago']|length, exercises['two_weeks_ago']|length] %}
-    {{ dump() }}
 
     <table border="1" cellspacing="0" cellpadding="2">
         <thead>
